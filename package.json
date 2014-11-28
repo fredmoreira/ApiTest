@@ -2,9 +2,9 @@
   "name": "ApiTest",
   "version": "1.0.0",
   "description": "Teste de descrição",
-  "main": "index.js",
+  "main": "test.js",
   "scripts": {
-    "test": "test"
+    "test": "mocha -R spec test.js"
   },
   "repository": {
     "type": "git",
@@ -22,5 +22,10 @@
   "bugs": {
     "url": "https://github.com/fredmoreira/ApiTest/issues"
   },
-  "homepage": "https://github.com/fredmoreira/ApiTest"
+  "homepage": "https://github.com/fredmoreira/ApiTest",
+  "dependencies": {
+    "chai": "^1.10.0",
+    "mocha": "^2.0.1",
+    "supertest": "^0.15.0"
+  }
 }
