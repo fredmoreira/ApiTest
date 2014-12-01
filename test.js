@@ -4,22 +4,87 @@ var assert = require('chai').assert,
 
 var url = 'http://localhost:5000';
 
-//Create Before
-describe('API PhoneBook Tests', function() {
-  it('/get contacts', function(done) {
+var contatoCompleto = {
+  "name": "Tester Mineiro",
+  "mobilephone": "0553188889999",
+  "homephone": "0553133332222"
+};
+
+var contatoSemNome = {
+  "mobilephone": "0553188889999",
+  "homephone": "0553133332222"
+};
+
+var contatoSemMobilePhone = {
+  "name": "Tester Mineiro",
+  "homephone": "0553133332222"
+};
+
+
+describe('Testes API PhoneBook - POST', function() {
+  it('/POST contato completo', function(done) {
     request(url)
-      .get('/contacts/')
+      .post('/contacts/')
+      .set('Content-type', 'application/json')
+      .send(contatoCompleto)
       .end(function(err, res) {
         var result = JSON.parse(res.text);
-        console.log(result);
-        assert.equal(res.status, 200);
-        assert.equal(result[0].name, 'Teste API2', 'Conferindo o name!');
-        // console.log('Teste API2'in result[0].n);
+        assert.equal(res.status, 201);
+        assert.equal(result.name, 'Tester Mineiro', 'Conferindo o name!');
+        assert.equal(result.mobilephone, '0553188889999', 'Conferindo o mobilephone!');
+        assert.equal(result.homephone, '0553133332222', 'Conferindo o homephone!');
         done();
       });
-    //Create After
+  });
+
+  it('/POST contato sem nome', function(done) {
+    request(url)
+      .post('/contacts/')
+      .set('Content-type', 'application/json')
+      .send(contatoSemNome)
+      .end(function(err, res) {
+        assert.equal(res.status, 400);
+        assert.equal(res.text, 'Name is required', 'Validando mensagem de name obrigatório!');
+        done();
+      });
+  });
+
+  it('/POST contato sem mobilephone', function(done) {
+    request(url)
+      .post('/contacts/')
+      .set('Content-type', 'application/json')
+      .send(contatoSemMobilePhone)
+      .end(function(err, res) {
+        assert.equal(res.status, 400);
+        assert.equal(res.text, 'Mobilephone is required', 'Validando mensagem de mobilephone obrigatório!');
+        done();
+      });
   });
 });
+
+describe('Tests API PhoneBook - GET', function() {
+  it('/GET contato completo', function(done) {
+    request(url)
+      .get('/contacts/?name=Tester Mineiro')
+      .end(function(err, res) {
+        var result = JSON.parse(res.text);
+        assert.equal(res.status, 200);
+        assert.equal(result[0].name, 'Tester Mineiro', 'Conferindo o name!');
+        assert.equal(result[0].mobilephone, '0553188889999', 'Conferindo o mobilephone!');
+        assert.equal(result[0].homephone, '0553133332222', 'Conferindo o homephone!');
+        done();
+      });
+  });
+
+  it('/GET contato completo', function(done) {
+    request(url)
+      .get('/contacts/?name=Testador das galaxias 123')
+      .end(function(err, res) {
+        assert.equal(res.status, 204);
+        done();
+      });
+  });
+})
 
 
 
