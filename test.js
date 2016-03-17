@@ -44,7 +44,7 @@ describe('Testes API PhoneBook - POST', function() {
       .send(contatoSemNome)
       .end(function(err, res) {
         assert.equal(res.status, 400);
-        assert.equal(res.text, 'Name is required', 'Validando mensagem de name obrigatório!');
+        assert.equal(res.text, 'Missing required property: name', 'Validando mensagem de name obrigatório!');
         done();
       });
   });
@@ -56,7 +56,7 @@ describe('Testes API PhoneBook - POST', function() {
       .send(contatoSemMobilePhone)
       .end(function(err, res) {
         assert.equal(res.status, 400);
-        assert.equal(res.text, 'Mobilephone is required', 'Validando mensagem de mobilephone obrigatório!');
+        assert.equal(res.text, 'Missing required property: mobilephone', 'Validando mensagem de mobilephone obrigatório!');
         done();
       });
   });
@@ -80,11 +80,11 @@ describe('Tests API PhoneBook - GET', function() {
     request(url)
       .get('/contacts/?name=Testador das galaxias 123')
       .end(function(err, res) {
-        assert.equal(res.status, 204);
+        assert.equal(res.status, 404);
         done();
       });
   });
-})
+});
 
 
 
