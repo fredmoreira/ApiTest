@@ -85,12 +85,3 @@ describe('Tests API PhoneBook - GET', function() {
       });
   });
 });
-
-
-
-//   API PhoneBook Tests
-// [ { _id: '546157634f7623481bc4e5ea',
-//     name: 'Teste API2',
-//     mobilephone: '0553188889000',
-//     homephone: '0553133334444',
-//     __v: 0 } ]
