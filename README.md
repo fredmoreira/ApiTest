@@ -1,19 +1,19 @@
-ApiTest
+ApiTest JS
 =======
 
-Projeto simples para testar APIs REST com o Mocha, SuperTest e Chai
+A simple project to test APIs REST with Mocha, SuperTest e Chai
 
-####Depedências
+#### Dependencies
 
 * Mocha
 * SuperTest
 * Chai
 
-#### Instalação
+#### Setup
 * git clone https://github.com/fredmoreira/ApiTest.git
 * npm install
 
-#### Executar
+#### Run
 
 * npm test (No diretório raiz do projeto)
 * mocha -R spec path= caminho do arquivo de teste
