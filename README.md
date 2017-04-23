@@ -3,6 +3,8 @@ ApiTest JS
 
 A simple project to test APIs REST with Mocha, SuperTest e Chai
 
+API Example on test - https://github.com/fredmoreira/phone-book
+
 #### Dependencies
 
 * Mocha
