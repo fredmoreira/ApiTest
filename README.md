@@ -15,5 +15,5 @@ A simple project to test APIs REST with Mocha, SuperTest e Chai
 
 #### Run
 
-* npm test (No diretório raiz do projeto)
-* mocha -R spec path= caminho do arquivo de teste
+* npm test (in root directory)
+* mocha -R spec file path
